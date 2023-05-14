@@ -1,0 +1,23 @@
+
+
+alter Procedure sq_card_control
+@workerbarcode as varchar(50)
+as
+begin 
+
+	Declare @workername as varchar(100)
+	Select @workername=workername from workers where workerbarcode=@workerbarcode
+	if @workername is null
+	begin
+		raiserror('Kart Geçersiz',16,1)
+	end
+	else
+	begin
+		select @workername
+	end
+
+end
+
+--------------------------------------------------
+
+execute sq_card_control @workerbarcode='7D53DB7F-2B73-41CB-93AB-98080D3109AC'
